@@ -10,13 +10,17 @@ $icon-font-path: '../fonts/';
   border-radius: 3px;
 }
 
-.zoomed {
+.img-container {
   height: 300px;
   width: 300px;
   border: 1px solid #ddd;
   padding: 3px;
   border-radius: 3px;
   overflow: auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 
   > img {
     width: 100%;

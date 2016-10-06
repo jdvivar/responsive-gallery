@@ -27,10 +27,15 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-  <div class="container">
-    <h1 style="margin-bottom: 100px">gallery-prototype</h1>
+  <div class="container" style="max-width: 750px">
+    <h3>Responsive gallery</h3>
+    <hr />
+    <h5 style="color: #aaa">It will stretch the image to the container on normal view. Always keeping proportions. Zooming will do 5x on mobile and to real size on the viewer widget on desktop.</h5>
+    <h5 style="color: #aaa">Using <a target="_blank" href="https://github.com/igorlino/elevatezoom-plus">elevateZoom plus</a> on Desktop and native elements on mobile.</h5>
+    <!-- <hr /> -->
+    <h5> Double tap to zoom on mobile, hover on destkop</h5>
 
-    <div class="zoomed">
+    <div class="img-container js-img-zoom">
       <img src='images/cat-4.jpg'/>
     </div>
   </div>
@@ -38,6 +43,7 @@
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->
   <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/ez-plus/src/jquery.ez-plus.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
