@@ -13,13 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function handleOrientationChange(mql) {
     if (mql.matches) {
+      var trackedEvent = 'click';
       // Mobile view
-      $('.js-img-zoom').dblclick(toggleZoom);
+      $('.js-img-zoom').on(trackedEvent, toggleZoom);
       var ezpData = $('.zoomed img').data('ezPlus');
       ezpData ? ezpData.destroy() : null;
     } else {
       // Desktop view
-      $('.js-img-zoom').off('dblclick');
+      $('.js-img-zoom').off(trackedEvent);
       $('.js-img-zoom > img').ezPlus(ezpOptions);
     }
   }
