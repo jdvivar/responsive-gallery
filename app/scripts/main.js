@@ -39,20 +39,56 @@ document.addEventListener('DOMContentLoaded', function() {
   var zoom = false;
   var animationTime = 600;
 
-  function toggleZoom (e) {
+  function toggleZoom(e) {
+
+    // prevent zoom in iOS
+    // e.preventDefault();
+
     var el = $(e.target);
     if (zoom) {
-      el.css('width','100%');
+      zoomOut(el);
     } else {
-      el.css('width','500%');
-      el.css('transition', 'all ' + animationTime/1000 + 's');
-      el.parent().animate({
-        scrollTop: el.height() * 5 / 2.5,
-        scrollLeft: el.width() * 5 / 2.5
-      }, animationTime);
+      zoomIn(el);
     }
     zoom = !zoom;
   }
+
+  function zoomOut(el) {
+    el.css('width', '100%');
+  }
+
+  function zoomIn(el) {
+    el.css('width', '500%');
+    el.css('transition', 'all ' + animationTime / 1000 + 's');
+    el.parent().animate({
+      scrollTop: el.height() * 5 / 2.5,
+      scrollLeft: el.width() * 5 / 2.5
+    }, animationTime);
+  }
+
+  // hammer
+
+  // var hammertime = new Hammer($('.js-img-zoom')[0],{
+  //       touchAction: 'pan-x pan-y'
+  //   });
+
+  // hammertime.get('pinch').set({
+  //   enable: true
+  // });
+  // hammertime.on('pinch', function(e) {
+  //   if (e.srcEvent.type === 'touchend') {
+  //     if (e.additionalEvent === 'pinchin') {
+  //       zoomIn($(e.target));
+  //     }
+  //     else if (e.additionalEvent === 'pinchout') {
+  //       zoomOut($(e.target));
+  //     }
+  //   }
+  // });
+
+  // hammertime.on('doubletap', toggleZoom);
+
+
 
 
 });
