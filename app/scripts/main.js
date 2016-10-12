@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       // Desktop view
 
+      // Hide instructions
+      hideInstructions()
+
       // untrack event
       $('.js-img-zoom').off(trackedEvent);
 
@@ -41,9 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function toggleZoom(e) {
 
-    // prevent zoom in iOS
-    // e.preventDefault();
-
     var el = $(e.target);
     if (zoom) {
       zoomOut(el);
@@ -58,12 +58,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function zoomIn(el) {
+    hideInstructions();
     el.css('width', '500%');
     el.css('transition', 'all ' + animationTime / 1000 + 's');
     el.parent().animate({
       scrollTop: el.height() * 5 / 2.5,
       scrollLeft: el.width() * 5 / 2.5
     }, animationTime);
+  }
+
+  function hideInstructions() {
+    var instructions = $('.js-img-zoom .js-instructions');
+    $(instructions).hide();
   }
 
   // hammer
@@ -87,8 +93,5 @@ document.addEventListener('DOMContentLoaded', function() {
   // });
 
   // hammertime.on('doubletap', toggleZoom);
-
-
-
 
 });

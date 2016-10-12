@@ -14,6 +14,7 @@
   <!-- build:css styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower_components/ez-plus/css/jquery.ez-plus.css" />
+  <link rel="stylesheet" href="/bower_components/animate.css/animate.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -29,7 +30,7 @@
     <![endif]-->
 
   <div class="container" style="max-width: 750px">
-    <h3>Responsive gallery<span class="text-muted small pull-right" style="margin-top: 8px">12-oct 12:08</span></h3>
+    <h3>Responsive gallery<span class="pull-right text-right" style="font: bold 9px sans-serif; color: #aaa;">LATEST UPDATE<br />12-OCT 17:01</span></h3>
     <hr />
     <h5 style="color: #aaa">It will stretch the image to the container on normal view. Always keeping proportions. Zooming will do 5x on mobile and to real size on the viewer widget on desktop.</h5>
     <h5 style="color: #aaa">Using <a target="_blank" href="https://github.com/igorlino/elevatezoom-plus">elevateZoom plus</a> on Desktop and native elements on mobile.</h5>
@@ -37,7 +38,11 @@
     <h5> Tap once to zoom in/out on mobile, hover on destkop</h5>
 
     <div class="img-container js-img-zoom">
-      <img src='images/cat-4.jpg'/>
+      <img src="images/cat-4.jpg"/>
+      <div class="instructions animated js-instructions">
+        <i class="fa fa-search-plus"></i>
+        <div class="text">Tap once to zoom in or out</div>
+      </div>
     </div>
   </div>
 

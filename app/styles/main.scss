@@ -1,28 +1,66 @@
-$icon-font-path: '../fonts/';
+
+// for dev environment only
+// $fa-font-path: '/bower_components/font-awesome/fonts';
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "bower_components/font-awesome/scss/font-awesome.scss";
 // endbower
 
 .zoomWindowContainer > div {
-  border-color: #ddd!important;
   border-width: 1px!important;
+  border-color: #ddd!important;
   border-radius: 3px;
 }
-
 .img-container {
-  height: 300px;
-  width: 300px;
-  border: 1px solid #ddd;
-  padding: 3px;
-  border-radius: 3px;
+  position: relative;
   overflow: auto;
-
+  width: 300px;
+  height: 300px;
+  padding: 3px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
   @media (max-width: 768px) {
     width: 100%;
   }
-
-  > img {
+  img {
     width: 100%;
+  }
+  .instructions {
+    $instructionsWidth: 160px;
+    $instructionsHeight: 80px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: table;
+    width: $instructionsWidth;
+    height: $instructionsHeight;
+    margin-top: - $instructionsHeight / 2;
+    margin-left: - $instructionsWidth / 2;
+    padding: 10px;
+    animation-delay: 3s;
+    animation-name: zoomOut;
+    font: 13px sans-serif;
+    color: white;
+    border-radius: 8px;
+    background-color: rgba(1,1,1,.33);
+
+    .text {
+      display: table-cell;
+      padding-left: 30px;
+      font-size: 16px;
+      vertical-align: middle;
+    }
+
+    i {
+      $iconSize: 16px;
+
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      margin-top: - $iconSize / 2;
+      font-size: $iconSize;
+    }
   }
 }
