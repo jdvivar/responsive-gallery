@@ -78,10 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // hammertime.on('pinch', function(e) {
   //   if (e.srcEvent.type === 'touchend') {
   //     if (e.additionalEvent === 'pinchin') {
-  //       zoomIn($(e.target));
+  //       zoomOut($(e.target));
   //     }
   //     else if (e.additionalEvent === 'pinchout') {
-  //       zoomOut($(e.target));
+  //       zoomIn($(e.target));
   //     }
   //   }
   // });
