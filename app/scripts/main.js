@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mql.matches) {
       // Mobile view
 
+      setImageContainerHeight();
+
       // track event and callback
       $('.js-img-zoom').on(trackedEvent, toggleZoom);
 
@@ -26,8 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       // Desktop view
 
-      // Hide instructions
-      hideInstructions()
+      hideInstructions();
 
       // untrack event
       $('.js-img-zoom').off(trackedEvent);
@@ -39,25 +40,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Toggle zoom
 
-  var zoom = false;
+  var isZoom = false;
   var animationTime = 600;
 
   function toggleZoom(e) {
-
     var el = $(e.target);
-    if (zoom) {
+    if (isZoom) {
       zoomOut(el);
     } else {
       zoomIn(el);
     }
-    zoom = !zoom;
   }
 
   function zoomOut(el) {
+    isZoom = false;
     el.css('width', '100%');
   }
 
   function zoomIn(el) {
+    isZoom = true;
     hideInstructions();
     el.css('width', '500%');
     el.css('transition', 'all ' + animationTime / 1000 + 's');
@@ -69,29 +70,40 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function hideInstructions() {
     var instructions = $('.js-img-zoom .js-instructions');
-    $(instructions).hide();
+    $(instructions).remove();
   }
 
-  // hammer
+  // thumbnail list
 
-  // var hammertime = new Hammer($('.js-img-zoom')[0],{
-  //       touchAction: 'pan-x pan-y'
-  //   });
+  $('.js-select-this-img').click(function(e){
+    var self = this;
 
-  // hammertime.get('pinch').set({
-  //   enable: true
-  // });
-  // hammertime.on('pinch', function(e) {
-  //   if (e.srcEvent.type === 'touchend') {
-  //     if (e.additionalEvent === 'pinchin') {
-  //       zoomOut($(e.target));
-  //     }
-  //     else if (e.additionalEvent === 'pinchout') {
-  //       zoomIn($(e.target));
-  //     }
-  //   }
-  // });
+    // remove active state from all thumbnails
+    $('.js-select-this-img').removeClass('active');
 
-  // hammertime.on('doubletap', toggleZoom);
+    // set active to the one just clicked
+    $(self).addClass('active');
+
+    // set main image to the one selected
+    $('.js-img-zoom img').attr('src',$(self).children('img').attr('src'));
+
+    // set img container height according to contents within
+    // setImageContainerHeight();
+    setTimeout(function(){ setImageContainerHeight(); }, isZoom ? animationTime : 0);
+
+    // force zoom out
+    zoomOut($('.js-img-zoom img'));
+
+    // restart
+    // startZoom($('.js-img-zoom'));
+  });
+
+  function setImageContainerHeight() {
+    var containerHeight = parsePx($('.js-img-zoom img').css('height')) + parsePx($('.js-img-zoom').css('padding-bottom')) + parsePx($('.js-img-zoom').css('padding-top')) + parsePx($('.js-img-zoom').css('border-top-width')) + parsePx($('.js-img-zoom').css('border-bottom-width'));
+    $('.js-img-zoom').css('height',containerHeight);
+  }
+  function parsePx(px) {
+    return Math.round(parseFloat(px))
+  }
 
 });
