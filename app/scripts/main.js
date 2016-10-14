@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Options for zoom plugin
   var ezpOptions = {
     zoomWindowOffsetX: 10,
-    zoomWindowOffsetY: -2
+    zoomWindowOffsetY: -2,
+    touchEnabled: false
   };
 
   var zoomedElement = $('.js-img-zoom');
