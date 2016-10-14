@@ -54,15 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
       previousZoomedElement.off(trackedEvent);
 
       // init zoom plugin
-      startEZP(ezpOptions);
+      zoomedElement.children('img').first().ezPlus(ezpOptions);
     }
   }
-
-  // function to start zoom plugin (desktop)
-  function startEZP(options) {
-    zoomedElement.children('img').first().ezPlus(options);
-  }
-
 
   // function to toggle zoom natively (mobile)
   function toggleZoom(e) {
@@ -100,16 +94,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // thumbnail list behaviour
   $('.js-select-this-img').click(function(){
-    var self = this;
 
     // remove active state from all thumbnails
     $('.js-select-this-img').removeClass('active');
 
     // set active to the one just clicked
-    $(self).addClass('active');
+    $(this).addClass('active');
 
     // set main image to the one selected
-    zoomedElement.children('img').first().attr('src',$(self).children('img').attr('src'));
+    zoomedElement.children('img').first().attr('src',$(this).children('img').attr('src'));
 
     // set img container height according to contents within
     setImageContainerHeight(zoomedElement, isZoom ? animationTime : 0);
@@ -127,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // function to set image container height to the image height plus paddings and borders
   function setImageContainerHeight(container, delay) {
     setTimeout(function(){
-      // only execute if image is loaded
+      // only execute if image is loaded (while?)
       if (container.children('img').first().css('height') === 0) {
         setImageContainerHeight(container, delay);
         return false;
