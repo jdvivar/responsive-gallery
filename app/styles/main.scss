@@ -12,7 +12,10 @@ $instructionsWidth: 150px;
 $instructionsHeight: $instructionsWidth / 1.618;
 $instructionsPadding: 15px;
 $iconSize: 20px;
-$gutter: 10px;
+$dred-green: #3a9f9d;
+$gutter-images: 10px;
+$desktop-widget-width: 300px;
+$fade-width: 0.2 * $desktop-widget-width;
 
 .container {
   @media (max-width: 768px) {
@@ -20,26 +23,21 @@ $gutter: 10px;
   }
 
   max-width: 750px;
+  position: relative;
 }
 
 .zoomWindowContainer > div {
-  border-width: 1px!important;
-  border-color: #ddd!important;
-  border-radius: 3px;
+  border-width: 0px!important;
 }
 
 .img-container {
   position: relative;
   overflow: auto;
-  width: 300px;
-  padding: 3px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  margin-bottom: $gutter;
+  width: $desktop-widget-width;
+  margin-bottom: $gutter-images;
 
   @media (max-width: 768px) {
     width: 100%;
-    // height: 300px;
   }
   img {
     width: 100%;
@@ -81,9 +79,27 @@ $gutter: 10px;
   }
 }
 
+.thumbnail-fade {
+  height: 80px;
+  width: $fade-width;
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+
+  &.left {
+    background: linear-gradient(to right, white, transparent);
+    left: floor($grid-gutter-width / 2);
+  }
+  &.right {
+    background: linear-gradient(to left, white, transparent);
+    left: floor($grid-gutter-width / 2) + $desktop-widget-width - $fade-width;
+  }
+}
+
 .thumbnail-list {
   overflow-x: scroll;
-  width: 300px;
+  overflow-y: hidden;
+  width: $desktop-widget-width;
   white-space: nowrap;
   position: relative;
 
@@ -94,16 +110,18 @@ $gutter: 10px;
   .thumbnail-container {
     display: inline-block;
     width: 100px;
-    height: 100px;
 
     + .thumbnail-container {
-      margin-left: $gutter;
+      margin-left: $gutter-images;
     }
 
     .thumbnail {
       margin-bottom: 0;
-      a {
+      border-radius: 0;
+      &.active, &:hover {
+        border-color: $dred-green;
       }
     }
   }
+
 }
