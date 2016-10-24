@@ -87,11 +87,11 @@ $fade-width: 0.2 * $desktop-widget-width;
   pointer-events: none;
 
   &.left {
-    background: linear-gradient(to right, white, transparent);
+    background: linear-gradient(to right, white, rgba(255, 255, 255, 0));
     left: floor($grid-gutter-width / 2);
   }
   &.right {
-    background: linear-gradient(to left, white, transparent);
+    background: linear-gradient(to left, white, rgba(255, 255, 255, 0));
     left: floor($grid-gutter-width / 2) + $desktop-widget-width - $fade-width;
   }
 }

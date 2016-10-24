@@ -7,19 +7,31 @@ document.addEventListener('DOMContentLoaded', function() {
     touchEnabled: false
   };
 
+  // element which is zoomed
   var zoomedElement = $('.js-img-zoom');
+
+  // how much time does instructions notice stay on display?
   var instructionsDelay = 3000;
+
+  // set initial zoom state
   var isZoom = false;
+
+  // how much time do animations take?
   var animationTime = 600;
   var originalFadeRightPosition = $('.js-fade.right').css('left');
 
-  // responsive behaviour
+  // responsive behaviour trigger using a matchMedia
   var mql = window.matchMedia('(max-width: 768px)');
   mql.addListener(handleOrientationChange);
-  // handleOrientationChange(mql);
 
+
+  // function which executes whenever a orientation change happens
   function handleOrientationChange(mql) {
+
+    // event which will trigger zoom
     var trackedEvent = 'click';
+
+    // some actions need to be done on previous zoomed elements
     var previousZoomedElement = zoomedElement;
     zoomedElement = $('.js-img-zoom');
 
@@ -33,19 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // zoom out when orientation change happens
     zoomOut(zoomedElement.children('img').first());
+
+    // set correct height for widget
     setImageContainerHeight(zoomedElement, animationTime);
 
     if (mql.matches) {
-      // Mobile view
+      // MOBILE VIEW
 
       // hide instructions
       hideInstructions($('.js-instructions'), instructionsDelay);
 
-      // untrack event
+      // unbind triggers from all zoomed elements
       previousZoomedElement.off(trackedEvent);
       zoomedElement.off(trackedEvent);
 
-      // track event and callback
+      // bind tracked event to the element on display
       zoomedElement.on(trackedEvent, toggleZoom);
 
       // set position of right fade on thumbnail list responsively
@@ -54,16 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     } else {
-      // Desktop view
+      // DESKTOP VIEW
 
-      // hide instructions
+      // Instructions are only for mobile view
       hideInstructions($('.js-instructions'), 0);
 
-      // untrack event
+      // unbind triggers from all zoomed elements
       zoomedElement.off(trackedEvent);
       previousZoomedElement.off(trackedEvent);
 
-      // init zoom plugin
+      // Initialise plugin for zooming in desktop to proper element
       zoomedElement.children('img').first().ezPlus(ezpOptions);
 
       // set position of right fade on thumbnail list to its original state
@@ -137,16 +151,17 @@ document.addEventListener('DOMContentLoaded', function() {
     zoomedElement.children('img').first().attr('src',$(this).children('img').attr('src'));
 
     // set img container height according to contents within
+    // (has to be done after zoom out but the call should be done before)
     setImageContainerHeight(zoomedElement, isZoom ? animationTime : 0);
 
-    // force zoom out
+    // Zoom out when we select any thumbnail
     zoomOut(zoomedElement.children('img').first());
 
-    // force handle proper zoom method
+    // Force handle orientation change
     handleOrientationChange(mql)
   });
 
-  // choose first image on list
+  // choose first image on list by default
   $('.js-select-this-img').first().click();
 
   // horizontal scroll behaviour
@@ -167,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // check where we are on the scroll
   $('.js-thumbnail-list').scroll();
 
-
   // In order to vertically top align thumbnails, set the container height
   // to the greatest height amongst all thumbnails
   function setThumbnailHeight(){
@@ -179,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     $('.js-thumbnail-list .thumbnail-container').css('height', max + 'px');
-    $('.js-thumbnail-list').css('height', max + 'px');
+    $('.js-thumbnail-list').css('height', parseInt(max + 4) + 'px');
   }
 
   setThumbnailHeight();
