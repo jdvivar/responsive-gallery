@@ -1,7 +1,7 @@
 (function( $ ) {
     $.fn.responsiveGallery = function(options) {
 
-      console.log('Responsive version: 19:00');
+      console.log('Responsive version: 18:58');
 
       var gallery = this;
       if (!gallery.attr('id')){
@@ -108,12 +108,8 @@
           hideInstructions($('#' + gallery.id +' .js-instructions'), 0);
 
           // unbind triggers from all zoomed elements
-          previousZoomedElement.each(function(index,element){
-            element.removeEventListener(trackedEvent);
-          });
-          zoomedElement.each(function(index,element){
-            element.removeEventListener(trackedEvent);
-          });
+          zoomedElement.off(trackedEvent);
+          previousZoomedElement.off(trackedEvent);
 
           // Initialise plugin for zooming in desktop to proper element
           zoomedElement.children('img').first().ezPlus(options.ezpOptions);
