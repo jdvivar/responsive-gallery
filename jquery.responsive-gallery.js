@@ -1,6 +1,8 @@
 (function( $ ) {
     $.fn.responsiveGallery = function(options) {
 
+      console.log('Responsive version: 18:29');
+
       var gallery = this;
       if (!gallery.attr('id')){
         gallery.attr('id', Date.now());
