@@ -3,8 +3,10 @@
 
       var gallery = this;
       gallery.id = gallery[0].id;
+      console.log('id: ', gallery.id);
 
       // ADD MARKUP
+      gallery.html('');
 
       // Add style to parent node
       gallery.addClass('img-container');
