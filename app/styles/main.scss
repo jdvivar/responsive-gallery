@@ -54,12 +54,11 @@ $fade-width: 0.2 * $desktop-widget-width;
     margin-top: - $instructionsHeight / 2;
     margin-left: - $instructionsWidth / 2;
     padding: $instructionsPadding;
-    animation-delay: 3.6s;
-    animation-name: zoomOut;
     font: 13px sans-serif;
     color: white;
     border-radius: 8px;
     background-color: rgba(1,1,1,.33);
+    pointer-events: none;
 
     .text {
       display: table-cell;
@@ -110,6 +109,7 @@ $fade-width: 0.2 * $desktop-widget-width;
   .thumbnail-container {
     display: inline-block;
     width: 100px;
+    vertical-align: top;
 
     + .thumbnail-container {
       margin-left: $gutter-images;

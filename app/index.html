@@ -30,63 +30,23 @@
     <![endif]-->
 
   <div class="container">
-    <h3>Responsive gallery<span class="pull-right text-right" style="font: bold 9px sans-serif; color: #aaa;">LATEST UPDATE<br />24-OCT 17:35</span></h3>
+    <h3>Responsive gallery<span class="pull-right text-right" style="font: bold 9px sans-serif; color: #aaa;">LATEST UPDATE<br />25-OCT 16:40</span></h3>
     <hr />
     <h5 style="color: #aaa">It will stretch the image to the container on normal view. Always keeping proportions. Zooming will do 5x on mobile and to real size on the viewer widget on desktop.</h5>
     <h5 style="color: #aaa">Using <a target="_blank" href="https://github.com/igorlino/elevatezoom-plus">elevateZoom plus</a> on Desktop and native elements on mobile.</h5>
     <!-- <hr /> -->
     <h5> Tap once to zoom in/out on mobile, hover on destkop</h5>
 
-    <div class="img-container js-img-zoom">
-      <img />
-      <div class="instructions animated js-instructions">
-        <i class="fa fa-search-plus"></i>
-        <div class="text">Tap once to zoom in or out</div>
-      </div>
-    </div>
-    <!-- <div class="thumbnail-list-container"> -->
-    <div class="thumbnail-fade left js-fade"></div>
-    <div class="thumbnail-fade right js-fade"></div>
-    <div class="thumbnail-list js-thumbnail-list">
-      <div class="thumbnail-container">
-        <a class="thumbnail js-select-this-img">
-          <img src="images/cat-1.jpg"/>
-        </a>
-      </div>
-      <div class="thumbnail-container">
-        <a class="thumbnail js-select-this-img">
-          <img src="images/cat-2.jpg"/>
-        </a>
-      </div>
-      <div class="thumbnail-container">
-        <a class="thumbnail js-select-this-img">
-          <img src="images/cat-3.jpg"/>
-        </a>
-      </div>
-      <div class="thumbnail-container">
-        <a class="thumbnail js-select-this-img">
-          <img src="images/cat-4.jpg"/>
-        </a>
-      </div>
-      <div class="thumbnail-container">
-        <a class="thumbnail js-select-this-img">
-          <img src="images/cat-5.jpg"/>
-        </a>
-      </div>
-      <div class="thumbnail-container">
-        <a class="thumbnail js-select-this-img">
-          <img src="images/cat-6.jpg"/>
-        </a>
-      </div>
-    </div>
+    <div id="responsive-gallery"></div>
+
   </div>
-  <!-- </div> -->
 
   <!-- build:js scripts/vendor.js -->
   <!-- bower:js -->
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script src="/bower_components/ez-plus/src/jquery.ez-plus.js"></script>
   <!-- endbower -->
+  <script src="scripts/jquery.responsive-gallery.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/plugins.js -->
@@ -103,7 +63,6 @@
   <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
   <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
   <!-- endbuild -->
-
 
   <!-- build:js scripts/main.js -->
   <script src="scripts/main.js"></script>

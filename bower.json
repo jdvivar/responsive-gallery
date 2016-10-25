@@ -1,5 +1,6 @@
 {
-  "name": "test",
+  "name": "responsive-gallery",
+  "version": "0.1",
   "private": true,
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
