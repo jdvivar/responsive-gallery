@@ -4,8 +4,8 @@
 $grid-gutter-width: 30px!default;
 
 // bower:scss
-// @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// @import "bower_components/font-awesome/scss/font-awesome.scss";
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "bower_components/font-awesome/scss/font-awesome.scss";
 // endbower
 
 
@@ -19,14 +19,14 @@ $gutter-images: 10px;
 $desktop-widget-width: 300px;
 $fade-width: 0.2 * $desktop-widget-width;
 
-// .container {
-//   @media (max-width: 768px) {
-//     max-width: 500px;
-//   }
-//
-//   max-width: 750px;
-//   position: relative;
-// }
+.container {
+  @media (max-width: 768px) {
+    max-width: 500px;
+  }
+
+  max-width: 750px;
+  position: relative;
+}
 
 .zoomWindowContainer > div {
   border-width: 0px!important;
