@@ -1,7 +1,7 @@
 (function( $ ) {
     $.fn.responsiveGallery = function(options) {
 
-      console.log('Responsive version: 19:16');
+      console.log('Responsive Gallery: 19:44');
 
       var gallery = this;
       if (!gallery.attr('id')){
@@ -87,12 +87,8 @@
           hideInstructions($('#' + gallery.id + ' .js-instructions'), instructionsDelay);
 
           // unbind triggers from all zoomed elements
-          previousZoomedElement.each(function(index,element){
-            element.removeEventListener(trackedEvent);
-          });
-          zoomedElement.each(function(index,element){
-            element.removeEventListener(trackedEvent);
-          });
+          zoomedElement.off(trackedEvent);
+          previousZoomedElement.off(trackedEvent);
 
           // bind tracked event to the element on display
           zoomedElement.on(trackedEvent, toggleZoom);
