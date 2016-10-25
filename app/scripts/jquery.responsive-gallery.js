@@ -87,8 +87,12 @@
           hideInstructions($('#' + gallery.id + ' .js-instructions'), instructionsDelay);
 
           // unbind triggers from all zoomed elements
-          previousZoomedElement.off(trackedEvent);
-          zoomedElement.off(trackedEvent);
+          previousZoomedElement.each(function(index,element){
+            element.removeEventListener(trackedEvent);
+          });
+          zoomedElement.each(function(index,element){
+            element.removeEventListener(trackedEvent);
+          });
 
           // bind tracked event to the element on display
           zoomedElement.on(trackedEvent, toggleZoom);
