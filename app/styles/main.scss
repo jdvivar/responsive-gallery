@@ -35,6 +35,8 @@ $fade-width: 0.2 * $desktop-widget-width;
 .img-container {
   position: relative;
   overflow: auto;
+  padding: 0;
+  margin: 0;
   width: $desktop-widget-width;
   margin-bottom: $gutter-images;
 
