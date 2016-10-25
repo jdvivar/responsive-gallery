@@ -2,7 +2,10 @@
     $.fn.responsiveGallery = function(options) {
 
       var gallery = this;
-      gallery.id = gallery[0].id;
+      if (!gallery.attr('id')){
+        gallery.attr('id', Date.now());
+      }
+      gallery.id = gallery.attr('id');
       console.log('id: ', gallery.id);
 
       // ADD MARKUP
