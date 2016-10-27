@@ -1,7 +1,7 @@
 (function( $ ) {
     $.fn.responsiveGallery = function(options) {
 
-      console.log('Responsive Gallery: 19:44');
+      console.log('Responsive Gallery: 17:35');
 
       var gallery = this;
       if (!gallery.attr('id')){
@@ -15,6 +15,10 @@
 
       // Add style to parent node
       gallery.addClass('img-container');
+
+      // Adding navigation markup
+      gallery.append('<div class="navigation left"><i class="fa fa-chevron-left fa-fw"><i></div>');
+      gallery.append('<div class="navigation right"><i class="fa fa-chevron-right fa-fw"><i></div>');
 
       // Adding children markup to gallery
       gallery.append('<img /><div id=' + gallery.id + '-instructions class="instructions animated js-instructions"><i class="fa fa-search-plus"></i><div class="text">Tap once to zoom in or out</div></div>');
@@ -83,8 +87,8 @@
         if (mql.matches) {
           // MOBILE VIEW
 
-          // hide instructions
-          hideInstructions($('#' + gallery.id + ' .js-instructions'), instructionsDelay);
+          // remove instructions
+          removeInstructions($('#' + gallery.id + ' .js-instructions'), instructionsDelay);
 
           // unbind triggers from all zoomed elements
           zoomedElement.off(trackedEvent);
@@ -101,7 +105,7 @@
           // DESKTOP VIEW
 
           // Instructions are only for mobile view
-          hideInstructions($('#' + gallery.id +' .js-instructions'), 0);
+          removeInstructions($('#' + gallery.id +' .js-instructions'), 0);
 
           // unbind triggers from all zoomed elements
           zoomedElement.off(trackedEvent);
@@ -117,24 +121,40 @@
 
       // function to toggle zoom natively (mobile)
       function toggleZoom(e) {
-        (isZoom ? zoomOut : zoomIn)($(e.target));
+        if ($(e.target)[0].nodeName === 'IMG'){
+          (isZoom ? zoomOut : zoomIn)($(e.target));
+        }
       }
 
       // function to zoom out natively (mobile)
       function zoomOut(el) {
         isZoom = false;
+        showNavigation();
         el.css('width', '100%');
       }
 
       // function to zoom in natively
       function zoomIn(el) {
         isZoom = true;
-        hideInstructions($('#' + gallery.id +' .js-instructions'), 0);
+        hideNavigation();
+        removeInstructions($('#' + gallery.id +' .js-instructions'), 0);
         el.css('width', '500%');
         el.css('transition', 'all ' + animationTime / 1000 + 's');
         el.parent().animate({
           scrollTop: el.height() * 5 / 2.5,
           scrollLeft: el.width() * 5 / 2.5
+        }, animationTime);
+      }
+
+      function hideNavigation(){
+        $('#' + gallery.id + ' .navigation').css('transition', 'none');
+        $('#' + gallery.id + ' .navigation').css('opacity', '0');
+      }
+
+      function showNavigation(){
+        $('#' + gallery.id + ' .navigation').css('transition', 'all ' + animationTime / 1000 + 's');
+        setTimeout(function(){
+          $('#' + gallery.id + ' .navigation').css('opacity', '1');
         }, animationTime);
       }
 
@@ -158,7 +178,7 @@
       }
 
       // function to remove from DOM instructions element
-      function hideInstructions(instructions, delay) {
+      function removeInstructions(instructions, delay) {
         instructions.css('animation-delay', delay / 1000 +'s');
         instructions.css('animation-name', 'zoomOut');
         setTimeout(function(){ $(instructions).remove(); }, delay + animationTime);
@@ -185,6 +205,10 @@
 
         // Force handle orientation change
         handleOrientationChange(mql);
+
+        // update controls visibility
+        updateVisibility();
+
       });
 
       // choose first image on list by default
@@ -223,5 +247,45 @@
       // }
 
       // setThumbnailHeight();
+
+      // Behaviour of navigation
+      $('#' + gallery.id + ' .navigation').click(function(e){
+        if ($(e.currentTarget).hasClass('left')) {
+          navigate('left');
+        } else if ($(e.currentTarget).hasClass('right')) {
+          navigate('right');
+        }
+      });
+
+      // force navigate to the left when we first start
+      navigate('left');
+
+      function navigate(direction) {
+
+        // var operation = direction === 'right' ? 'next' : 'prev';
+        if (direction === 'right') {
+          $('#' + gallery.id + '-thumbnails .js-select-this-img.active').parent().next().children().click();
+        } else {
+          $('#' + gallery.id + '-thumbnails .js-select-this-img.active').parent().prev().children().click();
+        }
+
+      }
+
+      function navigationVisibility(operation, direction) {
+        $('#' + gallery.id + ' .navigation.' + direction + ' i').css('opacity', operation === 'show' ? '1' : '0');
+      }
+
+      function updateVisibility() {
+        
+        if ($('#' + gallery.id + '-thumbnails .thumbnail-container:last-child .active').length) {
+          navigationVisibility('hide', 'right');
+        } else if ($('#' + gallery.id + '-thumbnails .thumbnail-container:first-child .active').length) {
+          navigationVisibility('hide', 'left');
+        } else {
+          navigationVisibility('show', 'left');
+          navigationVisibility('show', 'right');
+        }
+      }
+
     };
 }( jQuery ));
