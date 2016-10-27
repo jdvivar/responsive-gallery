@@ -18,6 +18,8 @@ $dred-green: #3a9f9d;
 $gutter-images: 10px;
 $desktop-widget-width: 300px;
 $fade-width: 0.2 * $desktop-widget-width;
+$navigation-width: 0.15;
+$navigation-control-size: 50px;
 
 .container {
   @media (max-width: 768px) {
@@ -78,6 +80,33 @@ $fade-width: 0.2 * $desktop-widget-width;
       left: instructionsPadding;
       margin-top: - $iconSize / 2;
       font-size: $iconSize;
+    }
+  }
+  .navigation {
+    height: 100%;
+    width: percentage($navigation-width);
+    position: absolute;
+    text-align: center;
+
+    @media (min-width: 769px) {
+      display: none;
+    }
+
+    &.left {
+      left: 0;
+    }
+    &.right {
+      right:0;
+    }
+
+    i {
+      font-size: $navigation-control-size;
+      position: relative;
+      top: 50%;
+      margin-top: - $navigation-control-size / 2;
+      transition: all 0.6s;
+      color: rgba(0,0,0,0.33);
+      text-shadow: 0px 0px 40px rgba(255,255,255,1);
     }
   }
 }
