@@ -218,7 +218,7 @@
       $('#' + gallery.id + '-thumbnails').scroll(function(e){
 
         // horizontal scroll position 0 to 1, where 0 is left edge
-        var horizontalScroll = this.scrollLeft / (this.scrollWidth - $(this).innerWidth());
+        var horizontalScroll = this.scrollLeft / (this.scrollWidth - $(this).innerWidth()) || 0;
         var startFade = 0.2;
 
         // fade left opacity, 0 on edge left, 1 on 20% horizontal scroll
@@ -276,7 +276,7 @@
       }
 
       function updateVisibility() {
-        
+
         if ($('#' + gallery.id + '-thumbnails .thumbnail-container:last-child .active').length) {
           navigationVisibility('hide', 'right');
         } else if ($('#' + gallery.id + '-thumbnails .thumbnail-container:first-child .active').length) {
