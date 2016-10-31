@@ -20,8 +20,15 @@
       gallery.append('<div class="navigation left"><i class="fa fa-chevron-left fa-fw"><i></div>');
       gallery.append('<div class="navigation right"><i class="fa fa-chevron-right fa-fw"><i></div>');
 
+      if (!options.instructions) {
+        options.instructions = {
+          mobile: 'Tap once to zoom in or out',
+          desktop: 'Hover over to zoom in',
+        };
+      }
+
       // Adding children markup to gallery
-      gallery.append('<img /><div id=' + gallery.id + '-instructions class="instructions animated js-instructions"><i class="fa fa-search-plus"></i><div class="text">Tap once to zoom in or out</div></div>');
+      gallery.append('<img /><div id=' + gallery.id + '-instructions class="instructions animated js-instructions"><i class="fa fa-search-plus"></i><div class="text hidden-xs">' + options.instructions.desktop +'</div><div class="text visible-xs">' + options.instructions.mobile +'</div></div>');
 
       // Appending the thumbnails
       gallery.after('<div id=' + gallery.id + '-fade-left class="thumbnail-fade left js-fade"></div><div id=' + gallery.id + '-fade-right class="thumbnail-fade right js-fade"></div><div id=' + gallery.id + '-thumbnails class="thumbnail-list js-thumbnail-list">');
@@ -109,7 +116,7 @@
           // DESKTOP VIEW
 
           // Instructions are only for mobile view
-          removeInstructions($('#' + gallery.id +' .js-instructions'), 0);
+          removeInstructions($('#' + gallery.id +' .js-instructions'), instructionsDelay);
 
           // unbind triggers from all zoomed elements
           zoomedElement.off(trackedEvent);
