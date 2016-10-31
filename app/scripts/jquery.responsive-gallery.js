@@ -41,7 +41,7 @@
           touchEnabled: false,
           borderSize: 2,
           lensBorderSize: 2,
-          lensBorderColour: 'orange',
+          lensBorderColour: '#f0ad4e',
           cursor: 'zoom-in',
         };
       }
