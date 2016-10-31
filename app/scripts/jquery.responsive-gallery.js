@@ -38,7 +38,11 @@
         options.ezpOptions = {
           zoomWindowOffsetX: 10,
           zoomWindowOffsetY: 0,
-          touchEnabled: false
+          touchEnabled: false,
+          borderSize: 2,
+          lensBorderSize: 2,
+          lensBorderColour: 'orange',
+          cursor: 'zoom-in',
         };
       }
 

@@ -30,8 +30,10 @@ $navigation-control-size: 50px;
   position: relative;
 }
 
-.zoomWindowContainer > div {
-  border-width: 0px!important;
+.zoomContainer {
+  .zoomWindow {
+    border-radius: 2px;
+  }
 }
 
 .img-container {
