@@ -133,7 +133,7 @@ $navigation-control-size: 50px;
 }
 
 .thumbnail-list {
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   width: $desktop-widget-width;
   white-space: nowrap;
