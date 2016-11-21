@@ -81,7 +81,7 @@ $navigation-control-size: 50px;
 
       position: absolute;
       top: 50%;
-      left: instructionsPadding;
+      left: $instructionsPadding;
       margin-top: - $iconSize / 2;
       font-size: $iconSize;
     }
