@@ -165,10 +165,10 @@
       }
 
       function showNavigation(){
-        $('#' + gallery.id + ' .navigation').css('display', originalNavigationDisplay);
         $('#' + gallery.id + ' .navigation').css('transition', 'all ' + animationTime / 1000 + 's');
         setTimeout(function(){
           $('#' + gallery.id + ' .navigation').css('opacity', '1');
+          $('#' + gallery.id + ' .navigation').css('display', originalNavigationDisplay);
         }, animationTime);
       }
 
