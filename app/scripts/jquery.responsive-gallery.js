@@ -156,12 +156,16 @@
         }, animationTime);
       }
 
+      var originalNavigationDisplay = $('#' + gallery.id + ' .navigation').css('display');
+
       function hideNavigation(){
         $('#' + gallery.id + ' .navigation').css('transition', 'none');
         $('#' + gallery.id + ' .navigation').css('opacity', '0');
+        $('#' + gallery.id + ' .navigation').css('display', 'none');
       }
 
       function showNavigation(){
+        $('#' + gallery.id + ' .navigation').css('display', originalNavigationDisplay);
         $('#' + gallery.id + ' .navigation').css('transition', 'all ' + animationTime / 1000 + 's');
         setTimeout(function(){
           $('#' + gallery.id + ' .navigation').css('opacity', '1');
