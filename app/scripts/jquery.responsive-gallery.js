@@ -1,14 +1,11 @@
 (function( $ ) {
     $.fn.responsiveGallery = function(options) {
 
-      console.log('Responsive Gallery: 17:35');
-
       var gallery = this;
       if (!gallery.attr('id')){
         gallery.attr('id', Date.now());
       }
       gallery.id = gallery.attr('id');
-      console.log('id: ', gallery.id);
 
       // ADD MARKUP
       gallery.html('');
@@ -37,6 +34,10 @@
       $(options.images).each(function(ind, val){
         thumbnails.append('<div class="thumbnail-container"><a class="thumbnail js-select-this-img"><img src="' + val +'"/></a></div>')
       });
+
+      if (!options.zoom) {
+        options.zoom = 2;
+      }
 
       // Options for zoom plugin
       if (!options.ezpOptions) {
@@ -147,7 +148,7 @@
         isZoom = true;
         hideNavigation();
         removeInstructions($('#' + gallery.id +' .js-instructions'), 0);
-        el.css('width', '500%');
+        el.css('width', options.zoom * 100 + '%');
         el.css('transition', 'all ' + animationTime / 1000 + 's');
         el.parent().animate({
           scrollTop: el.height() * 5 / 2.5,
